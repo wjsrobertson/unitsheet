@@ -12,7 +12,7 @@ import org.unitsheet.types.TypeConverterRegistry;
 import java.io.*;
 
 import static org.unitsheet.utils.ArgumentChecks.checkNotNull;
-import static org.unitsheet.utils.Paths.fileExtension;
+import static org.unitsheet.utils.FilePaths.fileExtension;
 
 public class TestManager {
 

@@ -1,8 +1,8 @@
 package org.unitsheet.utils;
 
-public class Paths {
+public class FilePaths {
 
-    private Paths(){} // no instantiation
+    private FilePaths(){} // no instantiation
 
     public static String fileExtension(String filename) {
         if (Strings.isEmpty(filename)) {

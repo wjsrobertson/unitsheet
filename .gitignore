@@ -1,6 +1,6 @@
 *.class
-target
-target/*
+**/target
+**/target/*
 *.jar
 hs_err_pid*
 

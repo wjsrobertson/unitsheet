@@ -1,11 +1,11 @@
-package org.unitsheet.api.utils;
+package org.unitsheet.utils;
 
 import org.junit.Test;
 
-import static org.unitsheet.utils.Paths.fileExtension;
+import static org.unitsheet.utils.FilePaths.fileExtension;
 import static org.junit.Assert.assertEquals;
 
-public class PathsTest {
+public class FilePathsTest {
 
     @Test
     public void checkFileExtensionHappyPath() {
