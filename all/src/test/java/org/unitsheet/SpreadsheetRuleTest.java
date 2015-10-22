@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-@Workbook("D:/Users/Will/Projects/GitHub/watchdog/all/src/test/resources/spreadsheets/AverageOfTwoIntegers.xls")
+@Workbook("classpath:spreadsheets/AverageOfTwoIntegers.xls")
 public class SpreadsheetRuleTest {
 
     @Rule

@@ -1,5 +1,6 @@
 package org.unitsheet.supercsv;
 
+import org.junit.Ignore;
 import org.unitsheet.api.adapter.CellInfo;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
 import org.unitsheet.simplecsv.SuperCsvSpreadsheetProvider;
@@ -10,6 +11,7 @@ import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
 
+@Ignore
 public class SuperCsvSpreadsheetProviderFuncTest {
 
     private SuperCsvSpreadsheetProvider underTest;
