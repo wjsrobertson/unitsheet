@@ -10,6 +10,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import static java.util.Arrays.asList;
+import static org.unitsheet.utils.ReflectionUtils.getObjectFieldsInOrder;
+import static org.unitsheet.utils.ReflectionUtils.setObjectFieldValue;
 
 public class TestObjectFieldPopulator {
 
@@ -44,30 +46,4 @@ public class TestObjectFieldPopulator {
             }
         }
     }
-
-    private SortedSet<Field> getObjectFieldsInOrder(Object object) {
-        Class<?> clazz = object.getClass();
-        SortedSet<Field> fields = new TreeSet<>((Field x, Field y) -> x.getName().compareTo(y.getName()));
-        fields.addAll(asList(clazz.getFields()));
-        fields.addAll(asList(clazz.getDeclaredFields()));
-
-        return fields;
-    }
-
-    private void setObjectFieldValue(Field field, Object object, Object value)
-            throws IllegalAccessException, SecurityException {
-
-        boolean accessibleField = field.isAccessible();
-        if (!accessibleField) {
-            field.setAccessible(true);
-        }
-
-        field.set(object, value);
-
-        if (!accessibleField) {
-            field.setAccessible(false);
-        }
-    }
-
-
 }
