@@ -1,16 +1,14 @@
 package org.unitsheet;
 
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
 import org.unitsheet.annotations.ReadCell;
 import org.unitsheet.annotations.Workbook;
 import org.unitsheet.junit.SpreadsheetRule;
+import org.junit.Rule;
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 @Workbook("classpath:spreadsheets/AverageOfTwoIntegers.xls")
-@Ignore
 public class SpreadsheetRuleTest {
 
     @Rule

@@ -1,0 +1,5 @@
+http://stackoverflow.com/questions/3148535/how-to-read-excel-cell-having-date-with-apache-poi
+
+http://stackoverflow.com/questions/339699/java-generics-type-erasure-when-and-what-happens
+
+    methods like getGenericParameterTypes, getGenericReturnType, and, for fields, getGenericType.

@@ -11,6 +11,7 @@ import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
 
+@Ignore
 public class SuperCsvSpreadsheetProviderFuncTest {
 
     private SuperCsvSpreadsheetProvider underTest;
