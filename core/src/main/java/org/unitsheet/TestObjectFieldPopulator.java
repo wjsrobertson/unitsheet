@@ -30,20 +30,30 @@ public class TestObjectFieldPopulator {
         for (Field field : fields) {
             ReadCell annotation = field.getAnnotation(ReadCell.class);
             if (annotation != null) {
-                String cellName = annotation.value();
-                String sheetName = annotation.sheet();
-
-                CellInfo cellInfo = new CellInfo(sheetName, cellName, null, null);
-
-                Object cellValue = spreadsheet.getCellValue(cellInfo);
-                Object fieldValue = objectConverter.convertType(cellValue, field.getType());
-
-                try {
-                    setObjectFieldValue(field, testObject, fieldValue);
-                } catch (IllegalAccessException | SecurityException e) {
-                    throw new RuntimeException(); // TODO - handle me
-                }
+                handleReadCellAnnotation(testObject, field, annotation);
             }
+
+
         }
+    }
+
+    private void handleReadCellAnnotation(Object testObject, Field field, ReadCell annotation) {
+        Object cellValue = resolveCellValue(annotation);
+        Object fieldValue = objectConverter.convertType(cellValue, field.getType());
+
+        try {
+            setObjectFieldValue(field, testObject, fieldValue);
+        } catch (IllegalAccessException | SecurityException e) {
+            throw new RuntimeException(); // TODO - handle me
+        }
+    }
+
+    private Object resolveCellValue(ReadCell annotation) {
+        String cellName = annotation.value();
+        String sheetName = annotation.sheet();
+
+        CellInfo cellInfo = new CellInfo(sheetName, cellName, null, null);
+
+        return spreadsheet.getCellValue(cellInfo);
     }
 }

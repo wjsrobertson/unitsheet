@@ -42,9 +42,11 @@ public class ApachePoiSpreadsheetAdapter implements SpreadsheetAdapter {
 
     private Sheet getSheetWithFirstByDefault(String sheetName) {
         int sheetIndex = 0;
+
         if (isNotEmpty(sheetName)) {
             sheetIndex = workbook.getSheetIndex(sheetName);
         }
+
         return workbook.getSheetAt(sheetIndex);
     }
 
@@ -67,7 +69,7 @@ public class ApachePoiSpreadsheetAdapter implements SpreadsheetAdapter {
     }
 
     @Override
-    public List<Object> getRange(String startCellName, String endCellName, String sheetName) {
+    public List<Object> getColumn(CellInfo start, CellInfo end, String sheetName) {
         return null;
     }
 
