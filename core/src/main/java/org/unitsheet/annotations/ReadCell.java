@@ -12,7 +12,9 @@ import java.lang.annotation.Target;
 public @interface ReadCell {
 
     String sheet() default "";
+
     String name() default "";
+
     String value();
 
 }

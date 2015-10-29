@@ -18,7 +18,7 @@ public class SuperCsvSpreadsheetAdapter implements SpreadsheetAdapter {
     }
 
     @Override
-    public List<Object> getColumn(CellInfo start, CellInfo end, String sheetName) {
+    public List<Object> getColumn(String sheetName, CellInfo start, CellInfo end) {
         return null;
     }
 

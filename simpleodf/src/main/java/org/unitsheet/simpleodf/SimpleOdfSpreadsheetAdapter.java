@@ -51,10 +51,10 @@ public class SimpleOdfSpreadsheetAdapter implements SpreadsheetAdapter {
     }
 
     @Override
-    public List<Object> getColumn(CellInfo start, CellInfo end, String sheetName) {
+    public List<Object> getColumn(String sheetName, CellInfo start, CellInfo end) {
         Table sheet = resolveSheet(sheetName);
 
-        CellRange cellRangeByPosition = sheet.getCellRangeByPosition(start.getName(), start.getName());
+        CellRange cellRangeByPosition = sheet.getCellRangeByPosition(start.getName(), end.getName());
         int numCols = cellRangeByPosition.getColumnNumber();
 
         if (numCols > 1) {
@@ -65,8 +65,8 @@ public class SimpleOdfSpreadsheetAdapter implements SpreadsheetAdapter {
 
         List<Object> objects = new ArrayList<>();
         for (int i=0 ; i<numRows ; i++) {
-            Cell cellByPosition = cellRangeByPosition.getCellByPosition(numCols, i);
-            objects.add(objects);
+            Cell cell = cellRangeByPosition.getCellByPosition(0, i);
+            objects.add(cell.getStringValue());
         }
 
         return objects;
