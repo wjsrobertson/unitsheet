@@ -1,6 +1,7 @@
 package org.unitsheet.simpleodf;
 
 import org.unitsheet.api.adapter.CellInfo;
+import org.unitsheet.api.adapter.ColumnInfo;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,18 +31,8 @@ public class SimpleOdfSpreadsheetProviderFuncTest {
     }
 
     private SpreadsheetAdapter getSpreadsheetAdapter(String spreadsheetName) throws IOException {
-        InputStream inputStream = null;
-        try {
-            inputStream = SimpleOdfSpreadsheetProviderFuncTest.class.getResourceAsStream(spreadsheetName);
+        try (InputStream inputStream = SimpleOdfSpreadsheetProviderFuncTest.class.getResourceAsStream(spreadsheetName)) {
             return underTest.createSpreadsheetAdapter(inputStream);
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    System.out.println("");
-                }
-            }
         }
     }
 
@@ -63,8 +54,9 @@ public class SimpleOdfSpreadsheetProviderFuncTest {
     public void checkGetColumn() {
         CellInfo from = new CellInfo(null, "B2", null, null);
         CellInfo to = new CellInfo(null, "B6", null, null);
+        ColumnInfo columnInfo = new ColumnInfo(null, to, from);
 
-        List<Object> column = sumColumnAdapter.getColumn(null, to, from);
+        List<Object> column = sumColumnAdapter.getColumn(columnInfo);
         assertThat(column).hasSize(5);
         assertThat(column).isEqualTo(asList(new Object[]{"100", "200", "300", "400", "500"}));
     }

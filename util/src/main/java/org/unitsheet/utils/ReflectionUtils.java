@@ -10,17 +10,17 @@ import static java.util.Arrays.asList;
 
 public class ReflectionUtils {
 
-    private ReflectionUtils(){}
+    private ReflectionUtils(){} // non-instantiable
 
     /**
      * Gets the generic type of a field.
      *
      * Assumes there is only one generic argument.
      *
-     * e.g. For a field of type List<String> the result will be java.lang.String
+     * TODO - use optional, handle non-happy path
      */
-    public static String getGenericType(Field field) {
-        String typeName = null;
+    public static Class<?> getGenericTypeClass(Field field) {
+        Class<?> typeClass = null;
 
         Type genericType = field.getGenericType();
         if (genericType instanceof ParameterizedType) {
@@ -28,17 +28,17 @@ public class ReflectionUtils {
             Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
             if (actualTypeArguments.length == 1) {
                 Type actualTypeArgument = actualTypeArguments[0];
-                typeName = actualTypeArgument.getTypeName();
+                if (actualTypeArgument instanceof Class) {
+                    return (Class) actualTypeArgument;
+                }
             } else {
                 // TODO
             }
-
-            parameterizedType.toString();
         } else {
             // TODO
         }
 
-        return typeName;
+        return typeClass;
     }
 
     public static SortedSet<Field> getObjectFieldsInOrder(Object object) {

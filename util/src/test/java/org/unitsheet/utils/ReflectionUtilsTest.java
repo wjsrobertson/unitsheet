@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.SortedSet;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static org.unitsheet.utils.ReflectionUtils.getGenericType;
+import static org.unitsheet.utils.ReflectionUtils.getGenericTypeClass;
 import static org.unitsheet.utils.ReflectionUtils.getObjectFieldsInOrder;
 import static org.unitsheet.utils.ReflectionUtils.setObjectFieldValue;
 
@@ -21,16 +21,16 @@ public class ReflectionUtilsTest {
     }
 
     @Test
-    public void checkStringListHasGenericTypeString() throws NoSuchFieldException {
+    public void checkStringListHasGenericTypeClassString() throws NoSuchFieldException {
         // given
         Class<ClassWithGenericFields> aClass = ClassWithGenericFields.class;
         Field field = aClass.getField("stringList");
 
         // when
-        String typeName = getGenericType(field);
+        Class<?> typeClass = getGenericTypeClass(field);
 
         // then
-        assertThat(typeName).isEqualTo("java.lang.String");
+        assertThat(typeClass.getName()).isEqualTo("java.lang.String");
     }
 
     @Test
@@ -59,7 +59,9 @@ public class ReflectionUtilsTest {
         // given
         ClassWithGenericFields test = new ClassWithGenericFields();
 
-        // when
+        /*
+        when
+         */
         Field field = test.getClass().getDeclaredField("stringList");
         ArrayList<String> list = new ArrayList<String>();
         setObjectFieldValue(field, test, list);

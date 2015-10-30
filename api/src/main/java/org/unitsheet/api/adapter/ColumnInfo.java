@@ -1,5 +1,6 @@
 package org.unitsheet.api.adapter;
 
+// TODO - use Builder
 public class ColumnInfo {
 
     private final String sheetName;

@@ -6,6 +6,9 @@ import java.util.stream.Stream;
 
 public class ClassUtils {
 
+    private ClassUtils() {
+    } // non-instantiable
+
     public static boolean isCollection(Class<?> type) {
         return Collection.class.isAssignableFrom(type);
     }
@@ -15,8 +18,9 @@ public class ClassUtils {
             return true;
         }
 
-        return Stream.of(type.getDeclaredConstructors()).anyMatch((c) -> c.getParameterCount() == 0 && (c.getModifiers() & Modifier.PUBLIC) > 0 );
-
+        return Stream.of(type.getDeclaredConstructors()).anyMatch(
+                (c) -> c.getParameterCount() == 0 && (c.getModifiers() & Modifier.PUBLIC) > 0
+        );
     }
 
     /**

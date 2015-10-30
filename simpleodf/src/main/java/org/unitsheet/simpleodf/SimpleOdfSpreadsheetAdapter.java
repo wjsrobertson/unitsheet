@@ -1,6 +1,7 @@
 package org.unitsheet.simpleodf;
 
 import org.unitsheet.api.adapter.CellInfo;
+import org.unitsheet.api.adapter.ColumnInfo;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Cell;
@@ -51,7 +52,11 @@ public class SimpleOdfSpreadsheetAdapter implements SpreadsheetAdapter {
     }
 
     @Override
-    public List<Object> getColumn(String sheetName, CellInfo start, CellInfo end) {
+    public List<Object> getColumn(ColumnInfo columnInfo) {
+        String sheetName = columnInfo.getSheetName();
+        CellInfo start = columnInfo.getFromCellInfo();
+        CellInfo end = columnInfo.getToCellInfo();
+
         Table sheet = resolveSheet(sheetName);
 
         CellRange cellRangeByPosition = sheet.getCellRangeByPosition(start.getName(), end.getName());
