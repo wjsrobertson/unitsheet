@@ -1,13 +1,16 @@
 package org.unitsheet.simpleodf;
 
 import org.unitsheet.api.adapter.CellInfo;
+import org.unitsheet.api.adapter.ColumnInfo;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
 import org.odftoolkit.simple.SpreadsheetDocument;
 import org.odftoolkit.simple.table.Cell;
 import org.odftoolkit.simple.table.CellRange;
 import org.odftoolkit.simple.table.Table;
+import org.unitsheet.api.exceptions.InvalidColumnRangeException;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.unitsheet.utils.Strings.isNotEmpty;
@@ -49,12 +52,29 @@ public class SimpleOdfSpreadsheetAdapter implements SpreadsheetAdapter {
     }
 
     @Override
-    public List<Object> getRange(String startCellName, String endCellName, String sheetName) {
+    public List<Object> getColumn(ColumnInfo columnInfo) {
+        String sheetName = columnInfo.getSheetName();
+        CellInfo start = columnInfo.getFromCellInfo();
+        CellInfo end = columnInfo.getToCellInfo();
+
         Table sheet = resolveSheet(sheetName);
 
-        CellRange cellRangeByPosition = sheet.getCellRangeByPosition(startCellName, endCellName);
+        CellRange cellRangeByPosition = sheet.getCellRangeByPosition(start.getName(), end.getName());
+        int numCols = cellRangeByPosition.getColumnNumber();
 
-        return null;
+        if (numCols > 1) {
+            throw new InvalidColumnRangeException("Too many columns: " + numCols); // TODO - add some detail
+        }
+
+        int numRows = cellRangeByPosition.getRowNumber();
+
+        List<Object> objects = new ArrayList<>();
+        for (int i=0 ; i<numRows ; i++) {
+            Cell cell = cellRangeByPosition.getCellByPosition(0, i);
+            objects.add(cell.getStringValue());
+        }
+
+        return objects;
     }
 
 }

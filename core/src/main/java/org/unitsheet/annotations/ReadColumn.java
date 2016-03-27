@@ -9,8 +9,10 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Range {
+public @interface ReadColumn {
     String sheet() default "";
-    String name() default "";
-    String value();
+
+    String from() default "";
+
+    String to() default "";
 }

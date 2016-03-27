@@ -12,6 +12,6 @@ public interface SpreadsheetAdapter {
      */
     public Object getCellValue(CellInfo cellInfo);
 
-    public List<Object> getRange(String startCellName, String endCellName, String sheetName);
+    public List<Object> getColumn(ColumnInfo columnInfo);
 
 }

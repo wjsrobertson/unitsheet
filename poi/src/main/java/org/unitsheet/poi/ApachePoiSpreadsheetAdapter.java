@@ -6,6 +6,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.unitsheet.api.adapter.CellInfo;
+import org.unitsheet.api.adapter.ColumnInfo;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
 
 import java.util.List;
@@ -42,9 +43,11 @@ public class ApachePoiSpreadsheetAdapter implements SpreadsheetAdapter {
 
     private Sheet getSheetWithFirstByDefault(String sheetName) {
         int sheetIndex = 0;
+
         if (isNotEmpty(sheetName)) {
             sheetIndex = workbook.getSheetIndex(sheetName);
         }
+
         return workbook.getSheetAt(sheetIndex);
     }
 
@@ -67,7 +70,7 @@ public class ApachePoiSpreadsheetAdapter implements SpreadsheetAdapter {
     }
 
     @Override
-    public List<Object> getRange(String startCellName, String endCellName, String sheetName) {
+    public List<Object> getColumn(ColumnInfo columnInfo) {
         return null;
     }
 
