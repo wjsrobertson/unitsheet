@@ -28,6 +28,7 @@ public class ObjectConverter {
             }
         }
 
+        // TODO - add nice exception
         throw new RuntimeException(
                 "Can't convert object type object " + source + " from " + sourceClass + " to " + destinationClass);
     }

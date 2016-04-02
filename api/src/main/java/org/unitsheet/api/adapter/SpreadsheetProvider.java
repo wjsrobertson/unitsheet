@@ -5,8 +5,8 @@ import java.io.InputStream;
 
 public interface SpreadsheetProvider {
 
-    public WorksheetType worksheetType();
+    WorksheetType worksheetType();
 
-    public SpreadsheetAdapter createSpreadsheetAdapter(InputStream inputStream) throws IOException;   //, TODO - add test context for specific config etc.
+    SpreadsheetAdapter createSpreadsheetAdapter(InputStream inputStream) throws IOException;   //, TODO - add test context for specific config etc.
 
 }

@@ -11,8 +11,8 @@ public class PluginTypeConverterLoader {
     public List<TypeConverter> loadTypeConvertersFromPlugins() {
         ServiceLoader<TypeConverter> loader = ServiceLoader.load(TypeConverter.class);
 
-        List<TypeConverter> pluginTypeConverters = new ArrayList<TypeConverter>();
-        loader.iterator().forEachRemaining(converter -> pluginTypeConverters.add(converter));
+        List<TypeConverter> pluginTypeConverters = new ArrayList<>();
+        loader.iterator().forEachRemaining(pluginTypeConverters::add);
 
         return pluginTypeConverters;
     }

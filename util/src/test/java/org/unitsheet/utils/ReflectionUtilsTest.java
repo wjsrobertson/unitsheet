@@ -27,7 +27,7 @@ public class ReflectionUtilsTest {
         Field field = aClass.getField("stringList");
 
         // when
-        Class<?> typeClass = getGenericTypeClass(field);
+        Class<?> typeClass = getGenericTypeClass(field).get();
 
         // then
         assertThat(typeClass.getName()).isEqualTo("java.lang.String");

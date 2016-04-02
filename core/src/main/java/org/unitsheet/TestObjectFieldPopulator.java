@@ -4,19 +4,16 @@ import org.unitsheet.annotations.ReadCell;
 import org.unitsheet.annotations.ReadColumn;
 import org.unitsheet.api.adapter.CellInfo;
 import org.unitsheet.api.adapter.ColumnInfo;
-import org.unitsheet.types.ObjectConverter;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
+import org.unitsheet.types.ObjectConverter;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.SortedSet;
-import java.util.TreeSet;
 
-import static java.util.Arrays.asList;
-import static org.unitsheet.utils.ReflectionUtils.getGenericTypeClass;
-import static org.unitsheet.utils.ReflectionUtils.getObjectFieldsInOrder;
-import static org.unitsheet.utils.ReflectionUtils.setObjectFieldValue;
+import static org.unitsheet.utils.ReflectionUtils.*;
 
 public class TestObjectFieldPopulator {
 
@@ -59,7 +56,12 @@ public class TestObjectFieldPopulator {
         List<Object> column = spreadsheet.getColumn(columnInfo);
         List<Object> results = new ArrayList<>();
 
-        Class<?> collectionGenericTypeClass = getGenericTypeClass(field);
+        Optional<Class<?>> genericTypeClassOptional = getGenericTypeClass(field);
+        if (! genericTypeClassOptional.isPresent()) {
+            throw new RuntimeException(); // TODO - add nice exception
+        }
+
+        Class<?> collectionGenericTypeClass = genericTypeClassOptional.get();
 
         for (Object o : column) {
             Object value = objectConverter.convertType(o, collectionGenericTypeClass);

@@ -3,10 +3,7 @@ package org.unitsheet.utils;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
@@ -22,7 +19,7 @@ public class ReflectionUtils {
      *
      * TODO - use optional, handle non-happy path
      */
-    public static Class<?> getGenericTypeClass(Field field) {
+    public static Optional<Class<?>> getGenericTypeClass(Field field) {
         Class<?> typeClass = null;
 
         Type genericType = field.getGenericType();
@@ -32,7 +29,7 @@ public class ReflectionUtils {
             if (actualTypeArguments.length == 1) {
                 Type actualTypeArgument = actualTypeArguments[0];
                 if (actualTypeArgument instanceof Class) {
-                    return (Class) actualTypeArgument;
+                    typeClass = (Class) actualTypeArgument;
                 }
             } else {
                 // TODO
@@ -41,7 +38,7 @@ public class ReflectionUtils {
             // TODO
         }
 
-        return typeClass;
+        return Optional.ofNullable(typeClass);
     }
 
     // TODO - cleanup
@@ -60,6 +57,7 @@ public class ReflectionUtils {
         return sorted;
     }
 
+    // TODO - check security permissions / SecurityException
     public static void setObjectFieldValue(Field field, Object object, Object value)
             throws IllegalAccessException, SecurityException {
 
