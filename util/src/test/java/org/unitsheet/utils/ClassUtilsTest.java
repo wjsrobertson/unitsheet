@@ -10,7 +10,7 @@ import org.unitsheet.utils.test.MissingNoArgConstructor;
 
 import java.util.List;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.unitsheet.utils.ClassUtils.*;
 
 @RunWith(MockitoJUnitRunner.class)

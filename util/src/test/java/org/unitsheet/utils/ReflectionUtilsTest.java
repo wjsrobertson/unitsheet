@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.SortedSet;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.unitsheet.utils.ReflectionUtils.getGenericTypeClass;
 import static org.unitsheet.utils.ReflectionUtils.getObjectFieldsInOrder;
 import static org.unitsheet.utils.ReflectionUtils.setObjectFieldValue;

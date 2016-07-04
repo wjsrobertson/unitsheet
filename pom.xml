@@ -25,6 +25,8 @@
         <hamcrestVersion>1.3</hamcrestVersion>
         <mockitoVersion>1.10.19</mockitoVersion>
         <junitVersion>4.11</junitVersion>
+        <assertjVersion>3.5.1</assertjVersion>
+        <guavaVersion>17.0</guavaVersion>
     </properties>
 
     <build>
@@ -82,17 +84,15 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.easytesting</groupId>
-            <artifactId>fest-assert</artifactId>
-            <version>1.4</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guavaVersion}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>17.0</version>
-            <scope>test</scope>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertjVersion}</version>
         </dependency>
-
     </dependencies>
 </project>
