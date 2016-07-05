@@ -32,31 +32,45 @@ public class TestMethodArgumentValidatorTest {
 
     static class HasInNoAnnotationArg {
         @Test
-        public void validTestMethod(int x) {
+        public void invalidTestMethod(int x) {
         }
     }
 
     @Test
     public void checkHasValidArgumentsForCellArgs() throws NoSuchMethodException {
-        Method validTestMethod = HasValidCellArgs.class.getDeclaredMethods()[0];
+        Method validTestMethod = firstNonSyntheticMethod(HasValidCellArgs.class);
 
         boolean valid = underTest.hasValidArguments(validTestMethod);
+
         assertThat(valid).isTrue();
     }
 
     @Test
     public void checkHasValidArgumentsForColumnArgs() throws NoSuchMethodException {
-        Method validTestMethod = HasValidColumnArg.class.getDeclaredMethods()[0];
+        Method validTestMethod = firstNonSyntheticMethod(HasValidColumnArg.class);
 
         boolean valid = underTest.hasValidArguments(validTestMethod);
+
         assertThat(valid).isTrue();
     }
 
     @Test
     public void checkHasInvalidArgumentsForNonAnnotatedArg() throws NoSuchMethodException {
-        Method validTestMethod = HasInNoAnnotationArg.class.getDeclaredMethods()[0];
+        Method inValidTestMethod = firstNonSyntheticMethod(HasInNoAnnotationArg.class);
 
-        boolean valid = underTest.hasValidArguments(validTestMethod);
+        boolean valid = underTest.hasValidArguments(inValidTestMethod);
+
         assertThat(valid).isFalse();
+    }
+
+    private Method firstNonSyntheticMethod(Class<?> aClass) {
+        Method[] declaredMethods = aClass.getDeclaredMethods();
+        for (Method declaredMethod : declaredMethods) {
+            if (! declaredMethod.isSynthetic()) {
+                return declaredMethod;
+            }
+        }
+
+        return null;
     }
 }

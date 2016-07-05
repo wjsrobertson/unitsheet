@@ -14,27 +14,27 @@ public class TestMethodArgumentValidator {
 
     private static final Set<Class<?>> ALLOWED_TYPES = setOf(ReadCell.class, ReadColumn.class);
 
-    public boolean hasValidArguments(Method m){
+    public boolean hasValidArguments(Method m) {
+        boolean valid = true;
+
         for (Parameter parameter : m.getParameters()) {
-            for (Class<?> allowedType : ALLOWED_TYPES) {
-                Annotation[] annotations = parameter.getAnnotations();
-                boolean hasValid = hasValidAnnotation(annotations);
-                if (! hasValid) {
-                    return false;
-                }
-            }
+            Annotation[] annotations = parameter.getAnnotations();
+            boolean hasValid = hasValidAnnotation(annotations);
+            valid &= hasValid;
         }
 
-        return true;
+        return valid;
     }
 
     private boolean hasValidAnnotation(Annotation[] annotations) {
         boolean hasValid = false;
+
         for (Annotation annotation : annotations) {
             if (ALLOWED_TYPES.contains(annotation.annotationType())) {
                 hasValid = true;
             }
         }
+
         return hasValid;
     }
 }
