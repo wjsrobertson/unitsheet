@@ -4,8 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.unitsheet.annotations.ReadCell;
-import org.unitsheet.annotations.ReadColumn;
+import org.unitsheet.annotations.Cell;
+import org.unitsheet.annotations.Column;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -20,13 +20,13 @@ public class TestMethodArgumentValidatorTest {
 
     static class HasValidCellArgs {
         @Test
-        public void validTestMethod(@ReadCell("A1") int x, @ReadCell("A2") String y) {
+        public void validTestMethod(@Cell("A1") int x, @Cell("A2") String y) {
         }
     }
 
     static class HasValidColumnArg {
         @Test
-        public void validTestMethod(@ReadColumn(from="A1", to="B1") List<Integer> x) {
+        public void validTestMethod(@Column(from="A1", to="B1") List<Integer> x) {
         }
     }
 

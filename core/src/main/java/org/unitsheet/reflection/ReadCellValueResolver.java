@@ -1,11 +1,11 @@
 package org.unitsheet.reflection;
 
-import org.unitsheet.annotations.ReadCell;
+import org.unitsheet.annotations.Cell;
 import org.unitsheet.api.adapter.CellInfo;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
 import org.unitsheet.types.ObjectConverter;
 
-public class ReadCellValueResolver implements ValueResolver<ReadCell> {
+public class ReadCellValueResolver implements ValueResolver<Cell> {
 
     private final ObjectConverter objectConverter;
 
@@ -15,21 +15,21 @@ public class ReadCellValueResolver implements ValueResolver<ReadCell> {
 
     @Override
     public Class<?> getAnnotationType() {
-        return ReadCell.class;
+        return Cell.class;
     }
 
     @Override
-    public Object resolveValue(ReadCell annotation, Class<?> destType, SpreadsheetAdapter spreadsheet) {
+    public Object resolveValue(Cell annotation, Class<?> destType, SpreadsheetAdapter spreadsheet) {
         Object cellValue = getRawCellValue(annotation, spreadsheet);
         return objectConverter.convertType(cellValue, destType);
     }
 
-    private Object getRawCellValue(ReadCell annotation, SpreadsheetAdapter spreadsheet) {
+    private Object getRawCellValue(Cell annotation, SpreadsheetAdapter spreadsheet) {
         CellInfo cellInfo = convertToCellInfo(annotation);
         return spreadsheet.getCellValue(cellInfo);
     }
 
-    private CellInfo convertToCellInfo(ReadCell annotation) {
+    private CellInfo convertToCellInfo(Cell annotation) {
         String cellName = annotation.value();
         String sheetName = annotation.sheet();
 

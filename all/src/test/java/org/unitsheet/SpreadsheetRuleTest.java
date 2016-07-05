@@ -2,7 +2,7 @@ package org.unitsheet;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.unitsheet.annotations.ReadCell;
+import org.unitsheet.annotations.Cell;
 import org.unitsheet.annotations.Workbook;
 import org.unitsheet.junit.SpreadsheetRule;
 
@@ -14,7 +14,7 @@ public class SpreadsheetRuleTest {
     @Rule
     public SpreadsheetRule spreadsheetRule = new SpreadsheetRule();
 
-    @ReadCell("C2")
+    @Cell("C2")
     private long privateStringField = 0l;
 
     @Test

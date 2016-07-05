@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.unitsheet.annotations.ReadCell;
+import org.unitsheet.annotations.Cell;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
 
 
@@ -28,7 +28,7 @@ public class TestObjectFieldPopulatorTest {
     private TestObjectFieldPopulator underTest;
 
     static class SomeClass {
-        @ReadCell("A1")
+        @Cell("A1")
         public String stringField;
     }
 
@@ -40,10 +40,10 @@ public class TestObjectFieldPopulatorTest {
     @Test
     public void checkName() {
         /*
-        given a test object with @ReadCell annotation and a ValueResolver for @ReadCell
+        given a test object with @Cell annotation and a ValueResolver for @Cell
          */
-        when(valueResolver.getAnnotationType()).thenReturn(ReadCell.class);
-        when(valueResolver.resolveValue(isA(ReadCell.class), eq(String.class), eq(spreadsheet)))
+        when(valueResolver.getAnnotationType()).thenReturn(Cell.class);
+        when(valueResolver.resolveValue(isA(Cell.class), eq(String.class), eq(spreadsheet)))
                 .thenReturn("value");
         SomeClass testObject = new SomeClass();
 

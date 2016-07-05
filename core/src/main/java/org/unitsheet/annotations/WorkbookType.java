@@ -2,7 +2,7 @@ package org.unitsheet.annotations;
 
 import org.unitsheet.api.adapter.WorksheetType;
 
-public @interface ForceWorkbookType {
+public @interface WorkbookType {
 
     Class<? extends WorksheetType> value();
 

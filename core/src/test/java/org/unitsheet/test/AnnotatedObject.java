@@ -1,21 +1,21 @@
 package org.unitsheet.test;
 
-import org.unitsheet.annotations.ReadCell;
+import org.unitsheet.annotations.Cell;
 import org.unitsheet.annotations.Workbook;
 
 @Workbook("C:\\temp\\test.csv")
 public class AnnotatedObject {
 
-    @ReadCell("private")
+    @Cell("private")
     private String privateStringField = "prvt";
 
-    @ReadCell("protected")
+    @Cell("protected")
     protected String protectedStringField = "prtctd";
 
-    @ReadCell("default")
+    @Cell("default")
     String defaultStringField = "dflt";
 
-    @ReadCell("public")
+    @Cell("public")
     public String publicStringField = "pblc";
 
 }

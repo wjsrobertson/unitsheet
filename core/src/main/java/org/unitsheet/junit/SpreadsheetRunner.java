@@ -61,7 +61,7 @@ public class SpreadsheetRunner extends BlockJUnit4ClassRunner {
             Method method = frameworkMethod.getMethod();
             boolean hasValidArguments = getTestMethodArgumentValidator().hasValidArguments(method);
             if (!hasValidArguments) {
-                String msg = "Method " + frameworkMethod.getName() + " has parameters without @ReadCell or @ReadColumn";
+                String msg = "Method " + frameworkMethod.getName() + " has parameters without @Cell or @Column";
                 errors.add(new Exception(msg));
             }
         }

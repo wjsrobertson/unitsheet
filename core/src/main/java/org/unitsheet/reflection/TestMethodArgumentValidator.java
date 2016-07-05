@@ -1,7 +1,7 @@
 package org.unitsheet.reflection;
 
-import org.unitsheet.annotations.ReadCell;
-import org.unitsheet.annotations.ReadColumn;
+import org.unitsheet.annotations.Cell;
+import org.unitsheet.annotations.Column;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -12,7 +12,7 @@ import static org.unitsheet.utils.Collections.setOf;
 
 public class TestMethodArgumentValidator {
 
-    private static final Set<Class<?>> ALLOWED_TYPES = setOf(ReadCell.class, ReadColumn.class);
+    private static final Set<Class<?>> ALLOWED_TYPES = setOf(Cell.class, Column.class);
 
     public boolean hasValidArguments(Method m) {
         boolean valid = true;

@@ -1,6 +1,6 @@
 package org.unitsheet.reflection;
 
-import org.unitsheet.annotations.ReadColumn;
+import org.unitsheet.annotations.Column;
 import org.unitsheet.api.adapter.CellInfo;
 import org.unitsheet.api.adapter.ColumnInfo;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
@@ -9,7 +9,7 @@ import org.unitsheet.types.ObjectConverter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadColumnValueResolver implements ValueResolver<ReadColumn> {
+public class ReadColumnValueResolver implements ValueResolver<Column> {
 
     private final ObjectConverter objectConverter;
 
@@ -19,16 +19,16 @@ public class ReadColumnValueResolver implements ValueResolver<ReadColumn> {
 
     @Override
     public Class<?> getAnnotationType() {
-        return ReadColumn.class;
+        return Column.class;
     }
 
     @Override
-    public Object resolveValue(ReadColumn annotation, Class<?> destType, SpreadsheetAdapter spreadsheet) {
+    public Object resolveValue(Column annotation, Class<?> destType, SpreadsheetAdapter spreadsheet) {
         List<Object> column = getRawValues(annotation, spreadsheet);
         return convertToDestType(destType, column);
     }
 
-    private List<Object> getRawValues(ReadColumn annotation, SpreadsheetAdapter spreadsheet) {
+    private List<Object> getRawValues(Column annotation, SpreadsheetAdapter spreadsheet) {
         ColumnInfo columnInfo = convertToColumnInfo(annotation);
         return spreadsheet.getColumn(columnInfo);
     }
@@ -43,7 +43,7 @@ public class ReadColumnValueResolver implements ValueResolver<ReadColumn> {
         return results;
     }
 
-    private ColumnInfo convertToColumnInfo(ReadColumn annotation) {
+    private ColumnInfo convertToColumnInfo(Column annotation) {
         String sheetName = annotation.sheet();
         String from = annotation.from();
         String to = annotation.to();

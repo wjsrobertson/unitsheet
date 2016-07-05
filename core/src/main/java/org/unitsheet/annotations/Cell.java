@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
-public @interface ReadCell {
+public @interface Cell {
 
     String sheet() default "";
 

@@ -2,8 +2,7 @@ package org.unitsheet;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.unitsheet.annotations.ReadCell;
-import org.unitsheet.annotations.ReadColumn;
+import org.unitsheet.annotations.Column;
 import org.unitsheet.annotations.Workbook;
 import org.unitsheet.junit.SpreadsheetRule;
 
@@ -14,12 +13,12 @@ import static org.junit.Assert.assertEquals;
 import static org.unitsheet.utils.Collections.listOf;
 
 @Workbook("classpath:spreadsheets/SumOfColumn.ods")
-public class SpreadsheetRuleReadColumnTest {
+public class SpreadsheetRuleColumnTest {
 
     @Rule
     public SpreadsheetRule spreadsheetRule = new SpreadsheetRule();
 
-    @ReadColumn(from = "B2", to = "B6")
+    @Column(from = "B2", to = "B6")
     private List<Integer> listOfNumbers;
 
     @Test

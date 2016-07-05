@@ -5,8 +5,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.unitsheet.annotations.ReadCell;
-import org.unitsheet.annotations.ReadColumn;
+import org.unitsheet.annotations.Column;
 import org.unitsheet.api.adapter.CellInfo;
 import org.unitsheet.api.adapter.ColumnInfo;
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
@@ -19,7 +18,7 @@ import static org.mockito.Mockito.when;
 import static org.unitsheet.utils.Collections.listOf;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ReadColumnValueResolverTest {
+public class ColumnValueResolverTest {
 
     @Mock
     private SpreadsheetAdapter spreadsheet;
@@ -28,7 +27,7 @@ public class ReadColumnValueResolverTest {
     private ObjectConverter objectConverter;
 
     @Mock
-    private ReadColumn readColumn;
+    private Column column;
 
     @Mock
     private List<Object> list;
@@ -41,8 +40,8 @@ public class ReadColumnValueResolverTest {
         /*
            Given a column which has two cells and happy path SpreadsheetAdapter & ObjectConverter
          */
-        when(readColumn.from()).thenReturn("A1");
-        when(readColumn.to()).thenReturn("A2");
+        when(column.from()).thenReturn("A1");
+        when(column.to()).thenReturn("A2");
 
         List<Object> rawList = listOf("raw1", "raw2");
         when(spreadsheet.getColumn(new ColumnInfo(null, createCellInfo("A1"), createCellInfo("A2"))))
@@ -52,7 +51,7 @@ public class ReadColumnValueResolverTest {
         when(objectConverter.convertType("raw2", String.class)).thenReturn("result2");
 
         // when
-        Object value = underTest.resolveValue(readColumn, String.class, spreadsheet);
+        Object value = underTest.resolveValue(column, String.class, spreadsheet);
 
         /*
          then value is a list containing the Strings "result1" and "result2"
