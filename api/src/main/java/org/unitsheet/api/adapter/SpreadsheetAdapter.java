@@ -10,8 +10,8 @@ public interface SpreadsheetAdapter {
     /**
      * Returns {@code Object} instances to make life easy for the provider implementations.
      */
-    public Object getCellValue(CellInfo cellInfo);
+    Object getCellValue(CellInfo cellInfo);
 
-    public List<Object> getColumn(ColumnInfo columnInfo);
+    List<Object> getColumn(ColumnInfo columnInfo);
 
 }

@@ -1,10 +1,10 @@
 package org.unitsheet.junit;
 
-import org.unitsheet.TestContext;
-import org.unitsheet.TestManager;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
+import org.unitsheet.TestContext;
+import org.unitsheet.TestManager;
 
 public class SpreadsheetRule implements MethodRule {
 
@@ -18,11 +18,12 @@ public class SpreadsheetRule implements MethodRule {
         return new TestManager();
     }
 
-    @Override
+    @Override // MethodRule
     public Statement apply(Statement statement, FrameworkMethod frameworkMethod, Object testObject) {
         TestContext testContext = createTestManager().createTestContext(testObject.getClass());
-        testContext.getPopulator().populateFieldsWithValuesFromSpreadsheet(testObject);
+        testContext.getFieldPopulator().populateFieldsWithValuesFromSpreadsheet(testObject);
 
         return statement;
     }
+
 }

@@ -1,6 +1,8 @@
 package org.unitsheet;
 
 import org.unitsheet.api.adapter.SpreadsheetAdapter;
+import org.unitsheet.reflection.TestMethodArgumentResolver;
+import org.unitsheet.reflection.TestObjectFieldPopulator;
 
 public class TestContext {
 
@@ -8,12 +10,18 @@ public class TestContext {
 
     private final TestObjectFieldPopulator populator;
 
-    public TestContext(SpreadsheetAdapter spreadsheetAdapter, TestObjectFieldPopulator populator) {
+    private final TestMethodArgumentResolver argumentResolver;
+
+    public TestContext(SpreadsheetAdapter spreadsheetAdapter,
+                       TestObjectFieldPopulator populator,
+                       TestMethodArgumentResolver argumentResolver) {
+
         this.spreadsheetAdapter = spreadsheetAdapter;
         this.populator = populator;
+        this.argumentResolver = argumentResolver;
     }
 
-    public TestObjectFieldPopulator getPopulator() {
+    public TestObjectFieldPopulator getFieldPopulator() {
         return populator;
     }
 
@@ -21,4 +29,7 @@ public class TestContext {
         return spreadsheetAdapter;
     }
 
+    public TestMethodArgumentResolver getArgumentResolver() {
+        return argumentResolver;
+    }
 }

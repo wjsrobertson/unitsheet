@@ -1,5 +1,7 @@
 package org.unitsheet.api.adapter;
 
+import java.util.Objects;
+
 public class CellInfo {
 
     private final String sheetName;
@@ -33,7 +35,26 @@ public class CellInfo {
     public Integer getColumn() {
         return column;
     }
-    
+
+    @Override
+    public boolean equals(Object other) {
+        if (! (other instanceof CellInfo)) {
+            return false;
+        }
+
+        CellInfo cellInfo = (CellInfo) other;
+
+        return Objects.equals(sheetName, cellInfo.sheetName) &&
+                Objects.equals(name, cellInfo.name) &&
+                Objects.equals(row, cellInfo.row) &&
+                Objects.equals(column, cellInfo.column);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sheetName, name, row, column);
+    }
+
     public static class Builder {
         private String sheetName;
         private String name;

@@ -1,10 +1,10 @@
 package org.unitsheet;
 
+import org.junit.Rule;
+import org.junit.Test;
 import org.unitsheet.annotations.ReadCell;
 import org.unitsheet.annotations.Workbook;
 import org.unitsheet.junit.SpreadsheetRule;
-import org.junit.Rule;
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,11 +15,10 @@ public class SpreadsheetRuleTest {
     public SpreadsheetRule spreadsheetRule = new SpreadsheetRule();
 
     @ReadCell("C2")
-    private long privateStringField = 50l;
+    private long privateStringField = 0l;
 
     @Test
     public void testX() {
         assertEquals(100l, privateStringField);
     }
-
 }

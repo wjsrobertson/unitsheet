@@ -1,5 +1,6 @@
 package org.unitsheet.utils;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Collections {
@@ -10,14 +11,14 @@ public class Collections {
     public static <T> Set<T> setOf(T... elements) {
         Set<T> set = new HashSet<>();
         set.addAll(Arrays.asList(elements));
-        return set;
+
+        return java.util.Collections.unmodifiableSet(set);
     }
 
     @SafeVarargs
     public static <T> List<T> listOf(T... elements) {
-        List<T> set = new ArrayList<>();
-        set.addAll(Arrays.asList(elements));
-        return set;
-    }
+        List<T> list = Arrays.asList(elements);
 
+        return java.util.Collections.unmodifiableList(list);
+    }
 }

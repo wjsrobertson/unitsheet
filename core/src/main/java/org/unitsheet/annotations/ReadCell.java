@@ -1,19 +1,17 @@
 package org.unitsheet.annotations;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+@Target({ElementType.FIELD, ElementType.PARAMETER})
 public @interface ReadCell {
 
     String sheet() default "";
 
-    String name() default "";
+    // TODO - sort out name / value - do we need both?
+    //String name() default "";
 
     String value();
 
